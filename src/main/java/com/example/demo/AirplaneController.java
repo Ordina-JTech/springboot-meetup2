@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +22,7 @@ public class AirplaneController {
         return airplaneRepo.findAll();
     }
 
-    @RequestMapping(value = "/airplanes", method = RequestMethod.POST)
+    @PostMapping(value = "/airplanes")
     public void storeAirplane(@RequestBody Airplane airplane) {
         airplaneRepo.save(airplane);
     }
