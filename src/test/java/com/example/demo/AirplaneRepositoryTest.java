@@ -18,8 +18,7 @@ public class AirplaneRepositoryTest {
     @Test
     public void testFindByName(){
 
-        Airplane boeing = new Airplane();
-        boeing.setName("BOEING");
+        Airplane boeing = new Airplane("BOEING");
         airplaneRepo.save(boeing);
 
         Airplane result = airplaneRepo.findByName("BOEING");
