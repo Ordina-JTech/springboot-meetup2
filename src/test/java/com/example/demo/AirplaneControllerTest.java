@@ -31,10 +31,8 @@ public class AirplaneControllerTest {
     @Test
     public void showAllAirplanesTest() throws Exception {
 
-        Airplane airbus = new Airplane();
-        airbus.setName("AIRBUS");
-        Airplane boeing = new Airplane();
-        boeing.setName("BOEING");
+        Airplane airbus = new Airplane("AIRBUS");
+        Airplane boeing = new Airplane("BOEING");
 
         given(airplaneRepo.findAll()).willReturn(Arrays.asList(airbus, boeing));
 
