@@ -1,12 +1,7 @@
 package com.example.demo;
 
-import static java.util.Collections.*;
+import static java.util.Collections.emptyMap;
 import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
