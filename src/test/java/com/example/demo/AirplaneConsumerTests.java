@@ -1,8 +1,12 @@
 package com.example.demo;
 
+import static java.util.Collections.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,15 +38,30 @@ public class AirplaneConsumerTests {
     }
 
     @Test
-    public void when_ariplanes_are_saved_they_all_can_be_retreived(){
+    public void when_ariplanes_are_saved_they_all_can_be_retreived_as_json(){
 
         Airplane boeing = new Airplane("Boeing");
         Airplane airbus = new Airplane("Airbus");
-        restTemplate.postForObject("/airplanes", boeing, Airplane.class, Collections.emptyMap());
-        restTemplate.postForObject("/airplanes", airbus, Airplane.class, Collections.emptyMap());
+        restTemplate.postForObject("/airplanes", boeing, Airplane.class, emptyMap());
+        restTemplate.postForObject("/airplanes", airbus, Airplane.class, emptyMap());
 
         String body = restTemplate.getForObject("/airplanes", String.class);
-
         assertThat(body).isEqualTo("[{\"name\":\"Boeing\",\"numberOfWings\":2,\"id\":1},{\"name\":\"Airbus\",\"numberOfWings\":2,\"id\":2}]");
+    }
+
+    @Test
+    public void when_ariplanes_are_saved_they_all_can_be_retreived_as_objects(){
+
+        Airplane boeing = new Airplane("Boeing");
+        Airplane airbus = new Airplane("Airbus");
+        restTemplate.postForObject("/airplanes", boeing, Airplane.class, emptyMap());
+        restTemplate.postForObject("/airplanes", airbus, Airplane.class, emptyMap());
+
+        Airplane[] airplanes = restTemplate.getForObject("/airplanes", Airplane[].class);
+
+        assertThat(airplanes.length).isEqualTo(2);
+        assertThat(airplanes[0]).isInstanceOf(Airplane.class);
+        assertThat(airplanes[0].getName()).isEqualTo("Boeing");
+        assertThat(airplanes[1].getName()).isEqualTo("Airbus");
     }
 }
