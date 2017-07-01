@@ -3,6 +3,7 @@ package com.example.demo;
 import static java.util.Collections.emptyMap;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class AirplaneConsumerTests {
 
     @Autowired
     private TestRestTemplate restTemplate;
+
+    @After
+    public void cleanUp(){
+        restTemplate.delete("/airplanes");
+    }
 
     @Test
     public void when_called_the_correct_greeting_is_returned(){
@@ -41,7 +47,8 @@ public class AirplaneConsumerTests {
         restTemplate.postForObject("/airplanes", airbus, Airplane.class, emptyMap());
 
         String body = restTemplate.getForObject("/airplanes", String.class);
-        assertThat(body).isEqualTo("[{\"name\":\"Boeing\",\"numberOfWings\":2,\"id\":1},{\"name\":\"Airbus\",\"numberOfWings\":2,\"id\":2}]");
+        assertThat(body).contains("{\"name\":\"Boeing\",\"numberOfWings\":2,\"id\":");
+        assertThat(body).contains("{\"name\":\"Airbus\",\"numberOfWings\":2,\"id\":");
     }
 
     @Test

@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,5 +24,10 @@ public class AirplaneController {
     @PostMapping(value = "/airplanes")
     public void storeAirplane(@RequestBody Airplane airplane) {
         airplaneRepo.save(airplane);
+    }
+
+    @DeleteMapping(value = "/airplanes")
+    public void deleteAllAirplane() {
+        airplaneRepo.deleteAll();
     }
 }
