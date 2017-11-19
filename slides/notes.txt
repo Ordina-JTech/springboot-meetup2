@@ -1,0 +1,87 @@
+
+1 - Intro + doel springboot
+
+2 - Demo start.spring.io
+    - Starters
+    - SpringBoot heeft een voor configureerde set dependencies.
+      Voorheen veel tijd kwijt om dependencies op elkaar afstemt te krijgen. Welke versie werkt?
+    - pom.xml
+
+3 - First RestController "Hallo Allemaal!"
+    Memory usage: 290 Mb
+    Jar size:      16 Mb
+
+4 - @ConfigurationProperties
+
+5 - JpaRepository and  @DataJpaTest
+    Configuring H2, an in-memory database
+    Setting Hibernate, Spring Data, the DataSource and TransactionManager
+    Performing an @EntityScan
+    Turning on SQL logging
+
+6 - @WebMvcTest icm @MockBean
+
+7 - @SpringBootTest icm TestRestTemplate
+    Geen mocking, consumer tests
+
+    Memory usage: 568 Mb
+    Jar size:      30 Mb
+
+8 - Monitoring spring-boot-starter-actuator
+    http://localhost:8080/health
+    http://localhost:8080/info
+    info.app.version=0.0.1
+    management.security.enabled=false
+    http://localhost:8080/metrics
+    http://localhost:8080/configprops
+    http://localhost:8080/mappings
+    http://localhost:8080/trace
+    http://localhost:8080/autoconfig
+    http://localhost:8080/heapdump
+
+9 - Also interesting : Cashing, SpringBoot Devtools, SpringBoot Admin, ...
+
+10 - Converting a Vanilla Spring app to SpringBoot
+
+11 - Last slide
+
+
+- spring-boot-starter-test
+    JUnit — The de-facto standard for unit testing Java applications.
+    Spring Test & Spring Boot Test — Utilities and integration test support for Spring Boot applications.
+    AssertJ — A fluent assertion library.
+    Hamcrest — A library of matcher objects (also known as constraints or predicates).
+    Mockito — A Java mocking framework.
+    JSONassert — An assertion library for JSON.
+    JsonPath — XPath for JSON.
+
+- Testing http://www.baeldung.com/spring-boot-testing
+    - Voor unittesting: junit + Mockito
+    - Voor integratietests: Start alleen dat deel van de applicatielayer dat nodig is voor de test.
+      Bijvoorbeeld voor resttests alleen de weblayer + inject mockservices.
+      En voor domain tests, alleen Hibernate + Spring Data + in mememory database.
+
+- Externalized config: PropertySource order?
+    https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html
+
+http://www.baeldung.com/spring-boot-testing
+https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html
+
+-  @SpringBootApplication : Is ook een Configuration class.
+
+- Manieren om een SpringBoot app te starten
+    - java -jar naam.jar
+    - mvn spring-boot:run
+    - Vanuit Intellij starten main.
+    (- via SpringBoot CLI)
+
+InteliJ Toggle presenter mode: [cmd][shift]P
+
+SpringBoot magic
+    spring.factories
+
+Monitoring:
+    - jvisualvm
+    - ps -ef | grep java
+      top -pid <pidnr>
+
